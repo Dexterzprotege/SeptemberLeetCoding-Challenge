@@ -28,7 +28,6 @@ class Solution:
                     d[arr2[i]] = 1
                 else:
                     d[arr2[i]] += 1
-        print(d)
         for i in range(len(arr1)):
             if arr1[i] == arr2[i]:
                 continue
