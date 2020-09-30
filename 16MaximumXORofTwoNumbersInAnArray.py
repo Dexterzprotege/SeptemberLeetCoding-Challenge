@@ -30,6 +30,7 @@ class Trie:
         self.children = {}
         
 class Solution:
+    # Insert into Trie bit by bit
     def insertBits(self, num):
         bits = bin(num)[2:].zfill(32)
         node = self.root
@@ -37,7 +38,8 @@ class Solution:
             if bit not in node.children:
                 node.children[bit] = Trie()
             node = node.children[bit]
-        
+    
+    #Find the max of a number in the trie 
     def findmax(self, num):
         bits = bin(num)[2:].zfill(32)
         node = self.root
@@ -56,10 +58,13 @@ class Solution:
         return int(ans, 2) ^ num
         
     def findMaximumXOR(self, nums: List[int]) -> int:
+        # Create a Trie Root node 
         self.root = Trie()
+        # Insert all numbers in array into trie in form of bits
         for num in nums:
             self.insertBits(num)
         ans = 0
+        # for each number in array, find the corresponding max number of it from trie by complementing each bit
         for num in nums:
             ans = max(ans, self.findmax(num))
         return ans
